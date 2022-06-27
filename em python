@@ -1,0 +1,29 @@
+from pytube import YouTube, Playlist
+
+
+def baixa_video(url):
+    youtube = YouTube(url)
+
+    youtube.streams.get_highest_resolution().download()
+
+
+def baixa_pl(pl_url):
+    playlist = Playlist(pl_url)
+
+    for video in playlist:
+        youtube = YouTube(video)
+        youtube.streams.get_highest_resolution().download()
+
+
+print("Bem vindo ao red hot chilli peppers!")
+i = input("digite 1 para baixar um video ou digite 2 para baixar uma playlist: ")
+
+if i == '1':
+    print("Voce escolheu video")
+    url = input("Insira o link: ")
+    baixa_video(url)
+
+if i == '2':
+    print('Você escolheu Playlist')
+    pl_url = input('Insira o link: ')
+    baixa_pl(pl_url)
